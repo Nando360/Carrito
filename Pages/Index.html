@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+  <script type="text/javascript">
+    function interruptor() {
+
+      var desple = document.getElementById("car");
+      var disp = desple.style.display;
+      if (disp === "none") {
+        desple.style.display = "block"
+
+      } else {
+        desple.style.display = "none"
+      }
+
+
+    }
+
+
+    function abretepaso(ean, precio, nombre, imagen) {
+      setCookie(ean, precio, nombre, imagen);
+      getCookie(ean, precio, nombre, imagen);
+
+    }
+
+    function setCookie(ean, precio, nombre, imagen) {
+
+      var nameE = "df-comp";
+      var nameP = nombre + " - " + ean + " - " + precio + " - " + imagen;
+
+
+      var exdays = 1;
+
+      const hoy = new Date();
+      hoy.setTime(hoy.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires=" + hoy.toUTCString();
+
+      document.cookie = nameE + "=" + nameP + ";" + expires + ";path=/";
+
+    }
+
+    function getCookie(ean, precio, nombre, imagen) {
+
+      var nameget = nombre + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+          }
+          if (c.indexOf(nameget) == 0) {
+            return c.substring(nameget.length, c.length);
+          }
+        //  if (c.indexOf) algo tenia que hacer aquí...
+
+      }
+        return "";
+      }
+  </script>
+
+  <title>Prueba_del_carrito</title>
+
+  <link rel="shortcut icon" href="../Imag/logo1.0.png">
+
+
+</head>
+
+
+<body>
+  <div class="container col-12 bg-success">
+    <div onclick="interruptor()" class=" carrito w3-display-topright">
+
+      <img src="../Imag/carro.png" alt="carro" style="width: 50px;" height="50px">
+    </div>
+
+    <div class="despl" id="car" style=" display: none">
+      <div class="tablero">
+        Lista de la compra:
+        <div class="lista" id="list">
+          ...
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="containerfer" id="657461">
+    <div class="container2fer">
+      <h3>Artículo en oferta</h3>
+      <div class="container3fer">
+        <div class="card" style="width:200px">
+          <img class="card-img-top" src="../Imag/mando.png" alt="Card image" style="width:100px">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Mando de play 5</h4>
+          <a href="#" class="boton"
+            onclick="abretepaso('657461','25.50€','mando play station 4','../Imag/mando.png')">Cómprame bb</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
+
+<style>
+  .boton {
+    background-color: #0b3142;
+    border: solid black 2px;
+    color: rgb(248, 241, 241);
+    padding: 7px 3px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .carrito {
+    float: right;
+    width: 10%;
+    height: 10%;
+    background-size: cover;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .carrito:hover {
+    border-left: 3px solid rgb(231, 134, 134);
+    background-color: #EBF5FB;
+    width: 300px;
+    border-radius: 8px;
+  }
+
+  .despl {
+    border-radius: 9px;
+    border-left: 3px solid rgb(231, 134, 134);
+    border-top: 3px solid rgb(228, 143, 143);
+    width: 300px;
+    height: 90%;
+    background-color: #EBF5FB;
+    position: absolute;
+    right: 0px;
+    top: 10%;
+  }
+
+  .containerfer {
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
+    width: 200px;
+    background-size: cover;
+    text-align: center;
+
+  }
+
+  .container2fer {
+    background-color: #AED6F1;
+    border: 1px solid black;
+  }
+
+  .container3fer {
+    background-color: #D6EAF8;
+    text-align: center;
+
+  }
+
+  .card-body {
+    background-color: #EBF5FB;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .tablero {
+
+    background-color: #CCCCFF;
+    width: 300px;
+    border: 1px solid rgb(100, 100, 100);
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    padding-right: 18px;
+    border: outset;
+  }
+
+  .lista {
+    border-bottom: outset;
+    /*border-style:*/
+    border-color: crimson;
+  }
+
+  ;
+</style>
